@@ -1,6 +1,6 @@
 {
   "name": "hac-jwt",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": "HiQ Ace Creative",
   "main": "./dist/src/index.js",
   "scripts": {
