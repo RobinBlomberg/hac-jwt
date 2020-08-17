@@ -5,7 +5,7 @@ export type SignOptions = jwt.SignOptions
 
 export type VerifyOptions = jwt.VerifyOptions
 
-export const signToken = (
+export const sign = (
   payload: object,
   secret: string,
   options?: jwt.SignOptions
@@ -31,7 +31,7 @@ export const signToken = (
   })
 }
 
-export const verifyToken = (
+export const verify = (
   token: string,
   secret: string,
   options?: jwt.VerifyOptions
