@@ -6,7 +6,7 @@ export type SignOptions = jwt.SignOptions
 export type VerifyOptions = jwt.VerifyOptions
 
 export const sign = (
-  payload: object,
+  payload: Record<string, unknown>,
   secret: string,
   options?: jwt.SignOptions
 ) => {
@@ -31,20 +31,21 @@ export const sign = (
   })
 }
 
-export const verify = (
+export const verify = <T extends Record<string, unknown>>(
   token: string,
   secret: string,
   options?: jwt.VerifyOptions
 ) => {
-  return new Promise<Record<string, any>>((resolve, reject) => {
+  // eslint-disable-next-line @typescript-eslint/ban-types
+  return new Promise<T>((resolve, reject) => {
     const args: VerifyArguments = [
       token,
       secret,
       (error, decoded) => {
-        if (error) {
+        if (error || !decoded) {
           reject(error)
         } else {
-          resolve(decoded)
+          resolve(decoded as T)
         }
       }
     ]

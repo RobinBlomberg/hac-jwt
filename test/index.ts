@@ -1,16 +1,24 @@
 import * as Jwt from '../src'
 import { deepStrictEqual, strictEqual } from 'assert'
 
+type IPayload = {
+  iat: number
+  object: {
+    foo: number
+  }
+  username: string
+}
+
 ;(async() => {
-  const encoded = await Jwt.signToken({
+  const encoded = await Jwt.sign({
     object: {
       foo: 45
     },
     username: 'foobar'
   }, 'secret')
 
-  const decoded = await Jwt.verifyToken(encoded, 'secret')
-  
+  const decoded = await Jwt.verify<IPayload>(encoded, 'secret')
+
   deepStrictEqual(
     decoded.object,
     {
