@@ -1,6 +1,10 @@
 import * as jwt from 'jsonwebtoken'
 import { SignArguments, VerifyArguments } from './types'
 
+export type SignOptions = jwt.SignOptions
+
+export type VerifyOptions = jwt.VerifyOptions
+
 export const signToken = (
   payload: object,
   secret: string,
