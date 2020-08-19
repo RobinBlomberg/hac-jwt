@@ -22,13 +22,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const Jwt = __importStar(require("../src"));
 const assert_1 = require("assert");
 (async () => {
-    const encoded = await Jwt.signToken({
+    const encoded = await Jwt.sign({
         object: {
             foo: 45
         },
         username: 'foobar'
     }, 'secret');
-    const decoded = await Jwt.verifyToken(encoded, 'secret');
+    const decoded = await Jwt.verify(encoded, 'secret');
     assert_1.deepStrictEqual(decoded.object, {
         foo: 45
     });

@@ -19,9 +19,9 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verifyToken = exports.signToken = void 0;
+exports.verify = exports.sign = void 0;
 const jwt = __importStar(require("jsonwebtoken"));
-exports.signToken = (payload, secret, options) => {
+exports.sign = (payload, secret, options) => {
     return new Promise((resolve, reject) => {
         const args = [
             payload,
@@ -41,13 +41,14 @@ exports.signToken = (payload, secret, options) => {
         jwt.sign(...args);
     });
 };
-exports.verifyToken = (token, secret, options) => {
+exports.verify = (token, secret, options) => {
+    // eslint-disable-next-line @typescript-eslint/ban-types
     return new Promise((resolve, reject) => {
         const args = [
             token,
             secret,
             (error, decoded) => {
-                if (error) {
+                if (error || !decoded) {
                     reject(error);
                 }
                 else {
