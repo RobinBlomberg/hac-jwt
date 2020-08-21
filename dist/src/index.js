@@ -23,43 +23,39 @@ exports.verify = exports.sign = void 0;
 const jwt = __importStar(require("jsonwebtoken"));
 exports.sign = (payload, secret, options) => {
     return new Promise((resolve, reject) => {
-        const args = [
-            payload,
-            secret,
-            (error, encoded) => {
-                if (error) {
-                    reject(error);
-                }
-                else {
-                    resolve(encoded);
-                }
+        const callback = (error, encoded) => {
+            if (error) {
+                reject(error);
             }
-        ];
-        if (options !== undefined) {
-            args.splice(2, 0, secret);
+            else {
+                resolve(encoded);
+            }
+        };
+        if (options === undefined) {
+            jwt.sign(payload, secret, callback);
         }
-        jwt.sign(...args);
+        else {
+            jwt.sign(payload, secret, options, callback);
+        }
     });
 };
 exports.verify = (token, secret, options) => {
     // eslint-disable-next-line @typescript-eslint/ban-types
     return new Promise((resolve, reject) => {
-        const args = [
-            token,
-            secret,
-            (error, decoded) => {
-                if (error || !decoded) {
-                    reject(error);
-                }
-                else {
-                    resolve(decoded);
-                }
+        const callback = (error, decoded) => {
+            if (error || !decoded) {
+                reject(error);
             }
-        ];
-        if (options !== undefined) {
-            args.splice(2, 0, secret);
+            else {
+                resolve(decoded);
+            }
+        };
+        if (options === undefined) {
+            jwt.verify(token, secret, callback);
         }
-        jwt.verify(...args);
+        else {
+            jwt.verify(token, secret, options, callback);
+        }
     });
 };
 //# sourceMappingURL=index.js.map
