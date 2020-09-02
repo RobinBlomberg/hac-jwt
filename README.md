@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-npm install https://bitbucket.org/nkpgSaberRiders/hacjwt
+npm install @robinblomberg/hac-jwt
 ```
 
 ## Usage

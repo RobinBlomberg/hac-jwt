@@ -1,6 +1,6 @@
 {
-  "name": "hac-jwt",
-  "version": "0.1.9",
+  "name": "@robinblomberg/hac-jwt",
+  "version": "0.2.0",
   "author": "HiQ Ace Creative",
   "main": "./dist/src/index.js",
   "typings": "./src/index.ts",
@@ -12,7 +12,7 @@
     "test-dev": "tsc-watch --project ./tsconfig.test.json --onSuccess \"node ./dist/test/index.js\""
   },
   "devDependencies": {
-    "eslint-config-hac-eslint": "git+https://bitbucket.org/nkpgSaberRiders/haceslint.git",
+    "@robinblomberg/eslint-config-hac-eslint": "^0.3.0",
     "tsc-watch": "^4.2.9",
     "typescript": "^3.9.7"
   },
@@ -20,5 +20,18 @@
     "@types/jsonwebtoken": "^8.5.0",
     "@types/node": "^14.0.27",
     "jsonwebtoken": "^8.5.1"
-  }
+  },
+  "description": "```\r npm install @robinblomberg/hac-jwt\r ```",
+  "directories": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RobinBlomberg/hac-jwt.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RobinBlomberg/hac-jwt/issues"
+  },
+  "homepage": "https://github.com/RobinBlomberg/hac-jwt#readme"
 }
