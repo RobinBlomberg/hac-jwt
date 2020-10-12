@@ -1,7 +1,7 @@
 import * as Jwt from '../src'
 import { deepStrictEqual, strictEqual } from 'assert'
 
-type IPayload = {
+type Payload = {
   iat: number
   object: {
     foo: number
@@ -17,7 +17,24 @@ type IPayload = {
     username: 'foobar'
   }, 'secret')
 
-  const decoded = await Jwt.verify<IPayload>(encoded, 'secret')
+  const verified = await Jwt.verify<Payload>(encoded, 'secret')
+
+  deepStrictEqual(
+    verified.object,
+    {
+      foo: 45
+    }
+  )
+  strictEqual(
+    verified.username,
+    'foobar'
+  )
+  strictEqual(
+    typeof verified.iat,
+    'number'
+  )
+
+  const decoded = Jwt.decode<Payload>(encoded)
 
   deepStrictEqual(
     decoded.object,

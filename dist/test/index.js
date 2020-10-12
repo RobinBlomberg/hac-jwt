@@ -28,7 +28,13 @@ const assert_1 = require("assert");
         },
         username: 'foobar'
     }, 'secret');
-    const decoded = await Jwt.verify(encoded, 'secret');
+    const verified = await Jwt.verify(encoded, 'secret');
+    assert_1.deepStrictEqual(verified.object, {
+        foo: 45
+    });
+    assert_1.strictEqual(verified.username, 'foobar');
+    assert_1.strictEqual(typeof verified.iat, 'number');
+    const decoded = Jwt.decode(encoded);
     assert_1.deepStrictEqual(decoded.object, {
         foo: 45
     });

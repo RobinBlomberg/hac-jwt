@@ -19,8 +19,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.verify = exports.sign = void 0;
+exports.verify = exports.sign = exports.decode = void 0;
 const jwt = __importStar(require("jsonwebtoken"));
+exports.decode = (token, options) => {
+    return options === undefined
+        ? jwt.decode(token)
+        : jwt.decode(token, options);
+};
 exports.sign = (payload, secret, options) => {
     return new Promise((resolve, reject) => {
         const callback = (error, encoded) => {
@@ -40,7 +45,6 @@ exports.sign = (payload, secret, options) => {
     });
 };
 exports.verify = (token, secret, options) => {
-    // eslint-disable-next-line @typescript-eslint/ban-types
     return new Promise((resolve, reject) => {
         const callback = (error, decoded) => {
             if (error || !decoded) {
