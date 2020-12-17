@@ -51,5 +51,5 @@ type Payload = {
     'number'
   )
 
-  console.log('\u001b[32m✓ Test "hcu-jwt" passed.\u001b[39m')
+  console.log('\u001b[32m✓ Test "hac-jwt" passed.\u001b[39m')
 })()

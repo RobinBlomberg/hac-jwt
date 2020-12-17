@@ -24,7 +24,7 @@ export const sign = (
       if (error) {
         reject(error)
       } else {
-        resolve(encoded)
+        resolve(encoded as string)
       }
     }
 
